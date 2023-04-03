@@ -54,12 +54,28 @@ useHead({
 });
 </script>
 <script>
+import axios from "axios";
 export default {
-  mounted(){
-    const ref = document.referrer;
-        
+  async mounted() {
+    axios
+      .get("https://api.ipify.org?format=json")
+      .then((response) => {
+        const formActionURL =  "https://docs.google.com/forms/d/e/1FAIpQLSffaSZWzoP0w9KWtApiAO8KvsNTexu0c6mmd9jWWWHCeK01og/formResponse";
+
+        const dataPost = {
+          "entry.177690088": document.referrer,
+          "entry.890571485": response.data.ip,
+          "entry.2113946612": navigator.userAgent,
+        };
+        useFetch(formActionURL,{
+            query: dataPost
+        })
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
-}
+};
 </script>
 
   <style>

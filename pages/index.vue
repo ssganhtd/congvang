@@ -38,11 +38,7 @@ const { data: posts } = useLazyFetch(
 );
 useHead({
   title: "News update",
-  meta: [{ name: "description", content: "My amazing site." }],
-  bodyAttrs: {
-    class: "test",
-  },
-  script: [{ innerHTML: "console.log('Hello world')" }],
+  meta: [{ name: "description", content: "My amazing site." }]
 });
 
 </script>
